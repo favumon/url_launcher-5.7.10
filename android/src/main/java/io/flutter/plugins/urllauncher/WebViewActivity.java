@@ -23,22 +23,6 @@ import java.util.Map;
 /*  Launches WebView activity */
 public class WebViewActivity extends Activity {
 
-  /*
-   * Use this to trigger a BroadcastReceiver inside WebViewActivity
-   * that will request the current instance to finish.
-   * */
-  public static String ACTION_CLOSE = "close action";
-
-  private final BroadcastReceiver broadcastReceiver =
-      new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-          String action = intent.getAction();
-          if (ACTION_CLOSE.equals(action)) {
-            finish();
-          }
-        }
-      };
 
   private final WebViewClient webViewClient =
       new WebViewClient() {
@@ -69,7 +53,6 @@ public class WebViewActivity extends Activity {
 
   private WebView webview;
 
-  private IntentFilter closeIntentFilter = new IntentFilter(ACTION_CLOSE);
 
   // Verifies that a url opened by `Window.open` has a secure url.
   private class FlutterWebChromeClient extends WebChromeClient {
@@ -134,8 +117,7 @@ public class WebViewActivity extends Activity {
     webview.getSettings().setSupportMultipleWindows(true);
     webview.setWebChromeClient(new FlutterWebChromeClient());
 
-    // Register receiver that may finish this Activity.
-    registerReceiver(broadcastReceiver, closeIntentFilter);
+
   }
 
   private Map<String, String> extractHeaders(Bundle headersBundle) {
