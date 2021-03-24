@@ -132,7 +132,7 @@ public class WebViewActivity extends Activity {
   @Override
   protected void onDestroy() {
     super.onDestroy();
-    unregisterReceiver(broadcastReceiver);
+   // unregisterReceiver(broadcastReceiver);
   }
 
   @Override
