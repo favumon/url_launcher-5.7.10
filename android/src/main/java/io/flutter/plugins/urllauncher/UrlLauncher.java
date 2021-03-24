@@ -85,7 +85,7 @@ class UrlLauncher {
 
   /** Closes any activities started with {@link #launch} {@code useWebView=true}. */
   void closeWebView() {
-    applicationContext.sendBroadcast(new Intent(WebViewActivity.ACTION_CLOSE));
+   // applicationContext.sendBroadcast(new Intent(WebViewActivity.ACTION_CLOSE));
   }
 
   /** Result of a {@link #launch} call. */
